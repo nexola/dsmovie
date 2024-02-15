@@ -11,8 +11,9 @@ import com.devsuperior.dsmovie.entities.MovieEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+import org.springframework.hateoas.RepresentationModel;
 
-public class MovieDTO {
+public class MovieDTO extends RepresentationModel<MovieDTO> {
 
 	private static final DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
 
