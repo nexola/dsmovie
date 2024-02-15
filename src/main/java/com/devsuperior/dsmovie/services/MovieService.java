@@ -52,7 +52,7 @@ public class MovieService {
         MovieEntity entity = new MovieEntity();
         copyDtoToEntity(dto, entity);
         entity = repository.save(entity);
-        return new MovieDTO(entity);
+        return new MovieDTO(entity).add(linkTo(methodOn(MovieController.class).findById(entity.getId())).withRel("GET Movie by id"));
     }
 
     @Transactional
@@ -61,7 +61,7 @@ public class MovieService {
             MovieEntity entity = repository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
-            return new MovieDTO(entity);
+			return new MovieDTO(entity).add(linkTo(methodOn(MovieController.class).findById(entity.getId())).withRel("GET Movie by id"));
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
         }
